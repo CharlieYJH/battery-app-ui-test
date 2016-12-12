@@ -7,6 +7,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400');
 
 $fontStack: 'Roboto', sans-serif;
+$mobile: 1280px;
 
 body, html {
 	width: 100%;
@@ -33,15 +34,20 @@ body, html {
 		left: 9%;
 		font-family: $fontStack;
 
-		@media only screen and (max-width: 1280px) {
+		@media only screen and (max-width: $mobile) {
 			position: relative;
+			@include center(0, 0);
+			text-align: center;
+			margin: 10% 0 10% 0;
 		}
 
+		// Title text
 		.title {
 			font-size: 36px;
 			font-weight: 300;
 		}
 
+		// Description text
 		.description {
 			font-size: 18px;
 			font-weight: 300;
@@ -55,7 +61,7 @@ body, html {
 		height: 800px;
 		@include center(50%, 50%);
 
-		@media only screen and (max-width: 1280px) {
+		@media only screen and (max-width: $mobile) {
 			position: relative;
 			margin: 0 auto;
 			@include center(0, 0);
@@ -69,13 +75,14 @@ body, html {
 			background: url("../public/images/iphone.png");
 			background-size: contain;
 
+			// App panel (main interface)
 			.app-panel {
 				position: absolute;
-				width: 80%;
-				height: 72.9%;
-				top: 14%;
-				left: 10.15%;
-				background: red;
+				width: 81.85%;
+				height: 74.5%;
+				top: 12.9%;
+				left: 9.3%;
+				background: white;
 			}
 		}
 	}

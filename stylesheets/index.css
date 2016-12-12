@@ -18,7 +18,12 @@ body, html {
     font-family: "Roboto", sans-serif; }
     @media only screen and (max-width: 1280px) {
       .main-wrapper .title-wrapper {
-        position: relative; } }
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: translate(0, 0);
+        text-align: center;
+        margin: 10% 0 10% 0; } }
     .main-wrapper .title-wrapper .title {
       font-size: 36px;
       font-weight: 300; }
@@ -47,10 +52,10 @@ body, html {
       background-size: contain; }
       .main-wrapper .content-wrapper .interface-wrapper .app-panel {
         position: absolute;
-        width: 80%;
-        height: 72.9%;
-        top: 14%;
-        left: 10.15%;
-        background: red; }
+        width: 81.85%;
+        height: 74.5%;
+        top: 12.9%;
+        left: 9.3%;
+        background: white; }
 
 /*# sourceMappingURL=index.css.map */
