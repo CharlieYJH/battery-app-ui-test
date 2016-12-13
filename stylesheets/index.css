@@ -1,9 +1,4 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400");
-* {
-  background: #000 !important;
-  color: #0f0 !important;
-  outline: solid #f00 1px !important; }
-
 body, html {
   width: 100%;
   height: 100%;
@@ -99,8 +94,51 @@ body, html {
               width: 80%;
               height: 100%; }
               .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .app-content .data-display-container .data-display {
+                position: relative;
                 width: 100%;
                 height: 50%; }
+                .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .app-content .data-display-container .data-display .data-text {
+                  position: absolute;
+                  text-align: center;
+                  font-family: "Roboto", sans-serif; }
+                  .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .app-content .data-display-container .data-display .data-text .data-label {
+                    font-size: 28px;
+                    font-weight: 300;
+                    line-height: 28px;
+                    letter-spacing: 2px;
+                    margin-left: 2px; }
+                  .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .app-content .data-display-container .data-display .data-text .data-number {
+                    font-size: 64px;
+                    font-weight: 100;
+                    line-height: 64px; }
+                .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .app-content .data-display-container .data-display #charge-data {
+                  top: 58%;
+                  left: 50%;
+                  transform: translate(-50%, -58%); }
+                .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .app-content .data-display-container .data-display #health-data {
+                  top: 44%;
+                  left: 50%;
+                  transform: translate(-50%, -44%); }
+                .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar {
+                  width: 100%;
+                  height: 100%; }
+                  .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar > circle {
+                    fill: transparent;
+                    stroke-dasharray: 519; }
+                  .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar .progress-background {
+                    stroke-width: 3px;
+                    stroke: rgba(0, 0, 0, 0.2); }
+                  .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar .progress-cover {
+                    stroke-width: 3px;
+                    stroke: black; }
+                  .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar #battery-charge {
+                    stroke-dashoffset: 100;
+                    transform: rotate(270deg);
+                    transform-origin: 50% 54%; }
+                  .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar #battery-health {
+                    stroke-dashoffset: 340;
+                    transform: rotate(270deg);
+                    transform-origin: 50% 46%; }
             .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .app-content .nav-arrow {
               width: 10%;
               height: 100%; }

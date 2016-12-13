@@ -1,8 +1,8 @@
-* {
-  background: #000 !important;
-  color: #0f0 !important;
-  outline: solid #f00 1px !important;
-}
+// * {
+//   background: #000 !important;
+//   color: #0f0 !important;
+//   outline: solid #f00 1px !important;
+// }
 
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400');
 
@@ -25,6 +25,11 @@ body, html {
 @mixin letter-spacing($space) {
 	letter-spacing: $space;
 	margin-left: $space;
+}
+
+@mixin rotate($deg, $x, $y) {
+	transform: rotate($deg);
+	transform-origin: $x $y;
 }
 
 // Page wrapper
@@ -132,19 +137,89 @@ body, html {
 						width: 100%;
 						height: 95%;
 
-						// App content are inline-block
+						// Float app content left to prevent div stacking
 						& > * {
 							float: left;
 						}
 
+						// Main data display container
 						.data-display-container {
 							position: relative;
 							width: 80%;
 							height: 100%;
 
+							// Data text display container
 							.data-display {
+								position: relative;
 								width: 100%;
 								height: 50%;
+
+								// Data text
+								.data-text {
+									position: absolute;
+									text-align: center;
+									font-family: $fontStack;
+
+									// Data label
+									.data-label {
+										font-size: 28px;
+										font-weight: 300;
+										line-height: 28px;
+										@include letter-spacing(2px);
+									}
+
+									// Data number
+									.data-number {
+										font-size: 64px;
+										font-weight: 100;
+										line-height: 64px;
+									}
+								}
+
+								// Position adjustment for charge display text
+								#charge-data {
+									@include center(58%, 50%);
+								}
+
+								// Position adjustment for health display text
+								#health-data {
+									@include center(44%, 50%);
+								}
+
+								// Radial progress bar container
+								.progress-bar {
+									width: 100%;
+									height: 100%;
+
+									& > circle {
+										fill: transparent;
+										stroke-dasharray: 519;
+									}
+
+									// Progress circle background
+									.progress-background {
+										stroke-width: 3px;
+										stroke: rgba(0, 0, 0, 0.2);
+									}
+
+									// Radial progress bar
+									.progress-cover {
+										stroke-width: 3px;
+										stroke: black;
+									}
+
+									// Battery health indicator
+									#battery-charge {
+										stroke-dashoffset: 100;
+										@include rotate(270deg, 50%, 54%);
+									}
+
+									// Battery charge indicator
+									#battery-health {
+										stroke-dashoffset: 340;
+										@include rotate(270deg, 50%, 46%);
+									}
+								}
 							}
 						}
 

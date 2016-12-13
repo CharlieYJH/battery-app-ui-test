@@ -25,8 +25,26 @@
               <div class="app-content">
                 <div class="nav-arrow"></div>
                 <div class="data-display-container">
-                  <div class="data-display"></div>
-                  <div class="data-display"></div>
+                  <div class="data-display">
+                    <div id="charge-data" class="data-text">
+                      <div class="data-label">charge</div>
+                      <div class="data-number">100</div>
+                    </div>
+                    <svg class="progress-bar">
+                      <circle r="33%" cx="50%" cy="54%" class="progress-background"></circle>
+                      <circle r="33%" cx="50%" cy="54%" id="battery-charge" class="progress-cover"></circle>
+                    </svg>
+                  </div>
+                  <div class="data-display">
+                    <div id="health-data" class="data-text">
+                      <div class="data-label">health</div>
+                      <div class="data-number">100</div>
+                    </div>
+                    <svg id="battery-charge" class="progress-bar">
+                      <circle r="33%" cx="50%" cy="46%" class="progress-background"></circle>
+                      <circle r="33%" cx="50%" cy="46%" id="battery-health" class="progress-cover"></circle>
+                    </svg>
+                  </div>
                 </div>
                 <div class="nav-arrow"></div>
               </div>

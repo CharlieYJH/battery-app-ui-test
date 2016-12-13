@@ -24,7 +24,19 @@ html
 								div.nav-arrow
 								div.data-display-container
 									div.data-display
+										div.data-text#charge-data
+											div.data-label charge
+											div.data-number 100
+										svg.progress-bar
+											circle(r="33%" cx="50%" cy="54%").progress-background
+											circle(r="33%" cx="50%" cy="54%").progress-cover#battery-charge
 									div.data-display
+										div.data-text#health-data
+											div.data-label health
+											div.data-number 100
+										svg.progress-bar#battery-charge
+											circle(r="33%" cx="50%" cy="46%").progress-background
+											circle(r="33%" cx="50%" cy="46%").progress-cover#battery-health
 								div.nav-arrow
 							ul.content-slider
 								li.slider-dot
