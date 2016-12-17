@@ -9,6 +9,7 @@
 $fontStack: 'Roboto', sans-serif;
 $mobile: 1280px;
 $appMainColor: #4b4b4b;
+$iconColor: #8bc1f3;
 
 body, html {
 	width: 100%;
@@ -37,229 +38,281 @@ body, html {
 	position: relative;
 	width: 100%;
 	height: 100%;
+}
 
-	// Page title text wrapper
-	.title-wrapper {
-		position: absolute;
-		@include center(30%, 0);
-		left: 9%;
-		font-family: $fontStack;
+// Page title text wrapper
+.title-wrapper {
+	position: absolute;
+	@include center(30%, 0);
+	left: 9%;
+	font-family: $fontStack;
 
-		@media only screen and (max-width: $mobile) {
-			position: relative;
-			@include center(0, 0);
+	@media only screen and (max-width: $mobile) {
+		position: relative;
+		@include center(0, 0);
+		text-align: center;
+		margin: 10% 0 10% 0;
+	}
+
+	// Title text
+	.title {
+		font-size: 36px;
+		font-weight: 300;
+	}
+
+	// Description text
+	.description {
+		font-size: 18px;
+		font-weight: 300;
+	}
+}
+
+// Page content wrapper
+.content-wrapper {
+	position: absolute;
+	width: 410px;
+	height: 800px;
+	@include center(50%, 50%);
+
+	@media only screen and (max-width: $mobile) {
+		position: relative;
+		margin: 0 auto;
+		@include center(0, 0);
+	}
+
+	// App interface wrapper
+	.interface-wrapper {
+		position: relative;
+		width: 410px;
+		height: 100%;
+		background: url("../public/images/iphone.jpg");
+		background-size: contain;
+	}
+}
+
+// App panel (main interface)
+.app-panel {
+	position: absolute;
+	width: 81.85%;
+	height: 74.5%;
+	top: 12.9%;
+	left: 9.3%;
+	background: #f6fbff;
+
+	// All block heights in panel should add up to 100%
+
+	// App title container
+	.app-title-container {
+		position: relative;
+		width: 100%;
+		height: 15.7%;
+
+		// Actual app title
+		.app-title {
+			position: absolute;
 			text-align: center;
-			margin: 10% 0 10% 0;
-		}
-
-		// Title text
-		.title {
-			font-size: 36px;
+			@include center(50%, 50%);
+			color: $appMainColor;
+			font-family: $fontStack;
+			font-size: 28px;
 			font-weight: 300;
-		}
-
-		// Description text
-		.description {
-			font-size: 18px;
-			font-weight: 300;
+			@include letter-spacing(6px);
 		}
 	}
 
-	// Page content wrapper
-	.content-wrapper {
-		position: absolute;
-		width: 410px;
-		height: 800px;
-		@include center(50%, 50%);
+	// App title separator
+	.separator {
+		position: relative;
+		width: 80%;
+		height: 0.3%;
+		margin: 0 auto;
+		background: $appMainColor;
+	}
 
-		@media only screen and (max-width: $mobile) {
+	// App main content container
+	.app-content-container {
+		position: relative;
+		width: 100%;
+		height: 70%;
+
+		// App main content
+		.app-content {
 			position: relative;
-			margin: 0 auto;
-			@include center(0, 0);
-		}
+			width: 100%;
+			height: 95%;
 
-		// App interface wrapper
-		.interface-wrapper {
-			position: relative;
-			width: 410px;
-			height: 100%;
-			background: url("../public/images/iphone.jpg");
-			background-size: contain;
+			// Float app content left to prevent div stacking
+			& > * {
+				float: left;
+			}
 
-			// App panel (main interface)
-			.app-panel {
-				position: absolute;
-				width: 81.85%;
-				height: 74.5%;
-				top: 12.9%;
-				left: 9.3%;
-				background: #f6fbff;
+			// Main data display container
+			.data-display-container {
+				position: relative;
+				width: 80%;
+				height: 100%;
 
-				// All block heights in panel should add up to 100%
-
-				// App title container
-				.app-title-container {
+				// Data text display container
+				.data-display {
 					position: relative;
 					width: 100%;
-					height: 15.7%;
+					height: 50%;
 
-					// Actual app title
-					.app-title {
+					// Data text
+					.data-text {
 						position: absolute;
 						text-align: center;
-						@include center(50%, 50%);
-						color: $appMainColor;
 						font-family: $fontStack;
-						font-size: 28px;
-						font-weight: 300;
-						@include letter-spacing(6px);
+
+						// Data label
+						.data-label {
+							font-size: 28px;
+							font-weight: 300;
+							line-height: 28px;
+							@include letter-spacing(2px);
+						}
+
+						// Data number
+						.data-number {
+							font-size: 64px;
+							font-weight: 100;
+							line-height: 64px;
+						}
 					}
-				}
 
-				// App title separator
-				.separator {
-					position: relative;
-					width: 80%;
-					height: 0.3%;
-					margin: 0 auto;
-					background: $appMainColor;
-				}
+					// Position adjustment for charge display text
+					#charge-data {
+						@include center(58%, 50%);
+					}
 
-				// App main content container
-				.app-content-container {
-					position: relative;
-					width: 100%;
-					height: 70%;
+					// Position adjustment for health display text
+					#health-data {
+						@include center(44%, 50%);
+					}
 
-					// App main content
-					.app-content {
-						position: relative;
+					// Radial progress bar container
+					.progress-bar {
 						width: 100%;
-						height: 95%;
+						height: 100%;
 
-						// Float app content left to prevent div stacking
-						& > * {
-							float: left;
-						}
-
-						// Main data display container
-						.data-display-container {
+						& > circle {
 							position: relative;
-							width: 80%;
-							height: 100%;
-
-							// Data text display container
-							.data-display {
-								position: relative;
-								width: 100%;
-								height: 50%;
-
-								// Data text
-								.data-text {
-									position: absolute;
-									text-align: center;
-									font-family: $fontStack;
-
-									// Data label
-									.data-label {
-										font-size: 28px;
-										font-weight: 300;
-										line-height: 28px;
-										@include letter-spacing(2px);
-									}
-
-									// Data number
-									.data-number {
-										font-size: 64px;
-										font-weight: 100;
-										line-height: 64px;
-									}
-								}
-
-								// Position adjustment for charge display text
-								#charge-data {
-									@include center(58%, 50%);
-								}
-
-								// Position adjustment for health display text
-								#health-data {
-									@include center(44%, 50%);
-								}
-
-								// Radial progress bar container
-								.progress-bar {
-									width: 100%;
-									height: 100%;
-
-									& > circle {
-										fill: transparent;
-										stroke-dasharray: 519;
-									}
-
-									// Progress circle background
-									.progress-background {
-										stroke-width: 3px;
-										stroke: rgba(0, 0, 0, 0.2);
-									}
-
-									// Radial progress bar
-									.progress-cover {
-										stroke-width: 3px;
-										stroke: black;
-									}
-
-									// Battery health indicator
-									#battery-charge {
-										stroke-dashoffset: 100;
-										@include rotate(270deg, 50%, 54%);
-									}
-
-									// Battery charge indicator
-									#battery-health {
-										stroke-dashoffset: 340;
-										@include rotate(270deg, 50%, 46%);
-									}
-								}
-							}
+							fill: transparent;
+							stroke-dasharray: 519;
+							stroke-width: 4px;
 						}
 
-						// Navigator arrows
-						.nav-arrow {
-							width: 10%;
-							height: 100%;
+						// Progress circle background
+						.progress-background {
+							stroke: rgba(0, 0, 0, 0.2);
 						}
-					}
 
-					// Carousel dots container
-					.content-slider {
-						height: 5%;
-						margin: 0;
-						padding: 0;
-						text-align: center;
+						// Radial progress bar
+						.progress-cover {
+							stroke: black;
+							stroke-linecap: round;
+						}
 
-						// Carousel dots
-						.slider-dot {
-							display: inline-block;
-							vertical-align: middle;
-							cursor: pointer;
+						// Battery health indicator
+						#battery-charge {
+							stroke-dashoffset: 100;
+							@include rotate(270deg, 50%, 54%);
+						}
 
-							& > div {
-								width: 10px;
-								height: 10px;
-								margin: 3px 7px 3px 7px;
-								background: $appMainColor;
-								border-radius: 50%;
-							}
+						// Battery charge indicator
+						#battery-health {
+							stroke-dashoffset: 340;
+							@include rotate(270deg, 50%, 46%);
 						}
 					}
 				}
+			}
 
-				// App option buttons container
-				.app-buttons-container {
-					position: relative;
-					width: 100%;
-					height: 14%;
+			// Navigator arrows
+			.nav-arrow {
+				width: 10%;
+				height: 100%;
+			}
+		}
+
+		// Carousel dots container
+		.content-slider {
+			height: 5%;
+			margin: 0;
+			padding: 0;
+			text-align: center;
+
+			// Carousel dots
+			.slider-dot {
+				display: inline-block;
+				vertical-align: middle;
+				cursor: pointer;
+				opacity: 0.2;
+
+				& > div {
+					width: 10px;
+					height: 10px;
+					margin: 3px 7px 3px 7px;
+					background: $appMainColor;
+					border-radius: 50%;
 				}
+
+				&.active {
+					opacity: 1;
+				}
+			}
+		}
+	}
+
+	// App option buttons container
+	.app-buttons-container {
+		position: relative;
+		width: 100%;
+		height: 14%;
+		text-align: center;
+
+		// Pseudo element hack to vertical align contained elements
+		&:before {
+			content: "";
+			display: inline-block;
+			vertical-align: middle;
+			height: 100%;
+		}
+
+		// Button containers
+		.button-container {
+			display: inline-block;
+			vertical-align: middle;
+			width: 70px;
+			height: 70px;
+			margin: 0 5% 0 5%;
+		}
+
+		// Button display text
+		.button-text {
+			position: relative;
+			width: 100%;
+			height: 30%;
+			@include letter-spacing(1px);
+			text-align: center;
+			color: $iconColor;
+			font-family: $fontStack;
+			font-size: 13px;
+		}
+
+		// Button icon
+		.button-icon {
+			position: relative;
+			width: 70%;
+			height: 70%;
+			margin: 0 auto;
+
+			& > div {
+				width: 90%;
+				height: 90%;
+				margin: 0 auto;
+				border-radius: 50%;
+				background: $iconColor;
 			}
 		}
 	}

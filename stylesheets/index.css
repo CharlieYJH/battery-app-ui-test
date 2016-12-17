@@ -9,157 +9,197 @@ body, html {
   position: relative;
   width: 100%;
   height: 100%; }
-  .main-wrapper .title-wrapper {
-    position: absolute;
-    top: 30%;
-    left: 0;
-    transform: translate(0, -30%);
-    left: 9%;
-    font-family: "Roboto", sans-serif; }
-    @media only screen and (max-width: 1280px) {
-      .main-wrapper .title-wrapper {
-        position: relative;
-        top: 0;
-        left: 0;
-        transform: translate(0, 0);
-        text-align: center;
-        margin: 10% 0 10% 0; } }
-    .main-wrapper .title-wrapper .title {
-      font-size: 36px;
-      font-weight: 300; }
-    .main-wrapper .title-wrapper .description {
-      font-size: 18px;
-      font-weight: 300; }
-  .main-wrapper .content-wrapper {
-    position: absolute;
-    width: 410px;
-    height: 800px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); }
-    @media only screen and (max-width: 1280px) {
-      .main-wrapper .content-wrapper {
-        position: relative;
-        margin: 0 auto;
-        top: 0;
-        left: 0;
-        transform: translate(0, 0); } }
-    .main-wrapper .content-wrapper .interface-wrapper {
+
+.title-wrapper {
+  position: absolute;
+  top: 30%;
+  left: 0;
+  transform: translate(0, -30%);
+  left: 9%;
+  font-family: "Roboto", sans-serif; }
+  @media only screen and (max-width: 1280px) {
+    .title-wrapper {
       position: relative;
-      width: 410px;
-      height: 100%;
-      background: url("../public/images/iphone.jpg");
-      background-size: contain; }
-      .main-wrapper .content-wrapper .interface-wrapper .app-panel {
-        position: absolute;
-        width: 81.85%;
-        height: 74.5%;
-        top: 12.9%;
-        left: 9.3%;
-        background: #f6fbff; }
-        .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-title-container {
+      top: 0;
+      left: 0;
+      transform: translate(0, 0);
+      text-align: center;
+      margin: 10% 0 10% 0; } }
+  .title-wrapper .title {
+    font-size: 36px;
+    font-weight: 300; }
+  .title-wrapper .description {
+    font-size: 18px;
+    font-weight: 300; }
+
+.content-wrapper {
+  position: absolute;
+  width: 410px;
+  height: 800px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); }
+  @media only screen and (max-width: 1280px) {
+    .content-wrapper {
+      position: relative;
+      margin: 0 auto;
+      top: 0;
+      left: 0;
+      transform: translate(0, 0); } }
+  .content-wrapper .interface-wrapper {
+    position: relative;
+    width: 410px;
+    height: 100%;
+    background: url("../public/images/iphone.jpg");
+    background-size: contain; }
+
+.app-panel {
+  position: absolute;
+  width: 81.85%;
+  height: 74.5%;
+  top: 12.9%;
+  left: 9.3%;
+  background: #f6fbff; }
+  .app-panel .app-title-container {
+    position: relative;
+    width: 100%;
+    height: 15.7%; }
+    .app-panel .app-title-container .app-title {
+      position: absolute;
+      text-align: center;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #4b4b4b;
+      font-family: "Roboto", sans-serif;
+      font-size: 28px;
+      font-weight: 300;
+      letter-spacing: 6px;
+      margin-left: 6px; }
+  .app-panel .separator {
+    position: relative;
+    width: 80%;
+    height: 0.3%;
+    margin: 0 auto;
+    background: #4b4b4b; }
+  .app-panel .app-content-container {
+    position: relative;
+    width: 100%;
+    height: 70%; }
+    .app-panel .app-content-container .app-content {
+      position: relative;
+      width: 100%;
+      height: 95%; }
+      .app-panel .app-content-container .app-content > * {
+        float: left; }
+      .app-panel .app-content-container .app-content .data-display-container {
+        position: relative;
+        width: 80%;
+        height: 100%; }
+        .app-panel .app-content-container .app-content .data-display-container .data-display {
           position: relative;
           width: 100%;
-          height: 15.7%; }
-          .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-title-container .app-title {
+          height: 50%; }
+          .app-panel .app-content-container .app-content .data-display-container .data-display .data-text {
             position: absolute;
             text-align: center;
-            top: 50%;
+            font-family: "Roboto", sans-serif; }
+            .app-panel .app-content-container .app-content .data-display-container .data-display .data-text .data-label {
+              font-size: 28px;
+              font-weight: 300;
+              line-height: 28px;
+              letter-spacing: 2px;
+              margin-left: 2px; }
+            .app-panel .app-content-container .app-content .data-display-container .data-display .data-text .data-number {
+              font-size: 64px;
+              font-weight: 100;
+              line-height: 64px; }
+          .app-panel .app-content-container .app-content .data-display-container .data-display #charge-data {
+            top: 58%;
             left: 50%;
-            transform: translate(-50%, -50%);
-            color: #4b4b4b;
-            font-family: "Roboto", sans-serif;
-            font-size: 28px;
-            font-weight: 300;
-            letter-spacing: 6px;
-            margin-left: 6px; }
-        .main-wrapper .content-wrapper .interface-wrapper .app-panel .separator {
-          position: relative;
-          width: 80%;
-          height: 0.3%;
-          margin: 0 auto;
-          background: #4b4b4b; }
-        .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container {
-          position: relative;
-          width: 100%;
-          height: 70%; }
-          .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .app-content {
-            position: relative;
+            transform: translate(-50%, -58%); }
+          .app-panel .app-content-container .app-content .data-display-container .data-display #health-data {
+            top: 44%;
+            left: 50%;
+            transform: translate(-50%, -44%); }
+          .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar {
             width: 100%;
-            height: 95%; }
-            .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .app-content > * {
-              float: left; }
-            .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .app-content .data-display-container {
+            height: 100%; }
+            .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar > circle {
               position: relative;
-              width: 80%;
-              height: 100%; }
-              .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .app-content .data-display-container .data-display {
-                position: relative;
-                width: 100%;
-                height: 50%; }
-                .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .app-content .data-display-container .data-display .data-text {
-                  position: absolute;
-                  text-align: center;
-                  font-family: "Roboto", sans-serif; }
-                  .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .app-content .data-display-container .data-display .data-text .data-label {
-                    font-size: 28px;
-                    font-weight: 300;
-                    line-height: 28px;
-                    letter-spacing: 2px;
-                    margin-left: 2px; }
-                  .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .app-content .data-display-container .data-display .data-text .data-number {
-                    font-size: 64px;
-                    font-weight: 100;
-                    line-height: 64px; }
-                .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .app-content .data-display-container .data-display #charge-data {
-                  top: 58%;
-                  left: 50%;
-                  transform: translate(-50%, -58%); }
-                .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .app-content .data-display-container .data-display #health-data {
-                  top: 44%;
-                  left: 50%;
-                  transform: translate(-50%, -44%); }
-                .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar {
-                  width: 100%;
-                  height: 100%; }
-                  .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar > circle {
-                    fill: transparent;
-                    stroke-dasharray: 519; }
-                  .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar .progress-background {
-                    stroke-width: 3px;
-                    stroke: rgba(0, 0, 0, 0.2); }
-                  .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar .progress-cover {
-                    stroke-width: 3px;
-                    stroke: black; }
-                  .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar #battery-charge {
-                    stroke-dashoffset: 100;
-                    transform: rotate(270deg);
-                    transform-origin: 50% 54%; }
-                  .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar #battery-health {
-                    stroke-dashoffset: 340;
-                    transform: rotate(270deg);
-                    transform-origin: 50% 46%; }
-            .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .app-content .nav-arrow {
-              width: 10%;
-              height: 100%; }
-          .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .content-slider {
-            height: 5%;
-            margin: 0;
-            padding: 0;
-            text-align: center; }
-            .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .content-slider .slider-dot {
-              display: inline-block;
-              vertical-align: middle;
-              cursor: pointer; }
-              .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-content-container .content-slider .slider-dot > div {
-                width: 10px;
-                height: 10px;
-                margin: 3px 7px 3px 7px;
-                background: #4b4b4b;
-                border-radius: 50%; }
-        .main-wrapper .content-wrapper .interface-wrapper .app-panel .app-buttons-container {
-          position: relative;
-          width: 100%;
-          height: 14%; }
+              fill: transparent;
+              stroke-dasharray: 519;
+              stroke-width: 4px; }
+            .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar .progress-background {
+              stroke: rgba(0, 0, 0, 0.2); }
+            .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar .progress-cover {
+              stroke: black;
+              stroke-linecap: round; }
+            .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar #battery-charge {
+              stroke-dashoffset: 100;
+              transform: rotate(270deg);
+              transform-origin: 50% 54%; }
+            .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar #battery-health {
+              stroke-dashoffset: 340;
+              transform: rotate(270deg);
+              transform-origin: 50% 46%; }
+      .app-panel .app-content-container .app-content .nav-arrow {
+        width: 10%;
+        height: 100%; }
+    .app-panel .app-content-container .content-slider {
+      height: 5%;
+      margin: 0;
+      padding: 0;
+      text-align: center; }
+      .app-panel .app-content-container .content-slider .slider-dot {
+        display: inline-block;
+        vertical-align: middle;
+        cursor: pointer;
+        opacity: 0.2; }
+        .app-panel .app-content-container .content-slider .slider-dot > div {
+          width: 10px;
+          height: 10px;
+          margin: 3px 7px 3px 7px;
+          background: #4b4b4b;
+          border-radius: 50%; }
+        .app-panel .app-content-container .content-slider .slider-dot.active {
+          opacity: 1; }
+  .app-panel .app-buttons-container {
+    position: relative;
+    width: 100%;
+    height: 14%;
+    text-align: center; }
+    .app-panel .app-buttons-container:before {
+      content: "";
+      display: inline-block;
+      vertical-align: middle;
+      height: 100%; }
+    .app-panel .app-buttons-container .button-container {
+      display: inline-block;
+      vertical-align: middle;
+      width: 70px;
+      height: 70px;
+      margin: 0 5% 0 5%; }
+    .app-panel .app-buttons-container .button-text {
+      position: relative;
+      width: 100%;
+      height: 30%;
+      letter-spacing: 1px;
+      margin-left: 1px;
+      text-align: center;
+      color: #8bc1f3;
+      font-family: "Roboto", sans-serif;
+      font-size: 13px; }
+    .app-panel .app-buttons-container .button-icon {
+      position: relative;
+      width: 70%;
+      height: 70%;
+      margin: 0 auto; }
+      .app-panel .app-buttons-container .button-icon > div {
+        width: 90%;
+        height: 90%;
+        margin: 0 auto;
+        border-radius: 50%;
+        background: #8bc1f3; }
 
 /*# sourceMappingURL=index.css.map */
