@@ -129,7 +129,7 @@ body, html {
               position: relative;
               fill: transparent;
               stroke-dasharray: 519;
-              stroke-width: 4px; }
+              stroke-width: 3px; }
             .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar .progress-background {
               stroke: rgba(0, 0, 0, 0.2); }
             .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar .progress-cover {
@@ -169,11 +169,6 @@ body, html {
     width: 100%;
     height: 14%;
     text-align: center; }
-    .app-panel .app-buttons-container:before {
-      content: "";
-      display: inline-block;
-      vertical-align: middle;
-      height: 100%; }
     .app-panel .app-buttons-container .button-container {
       display: inline-block;
       vertical-align: middle;
@@ -196,8 +191,8 @@ body, html {
       height: 70%;
       margin: 0 auto; }
       .app-panel .app-buttons-container .button-icon > div {
-        width: 90%;
-        height: 90%;
+        width: 100%;
+        height: 100%;
         margin: 0 auto;
         border-radius: 50%;
         background: #8bc1f3; }

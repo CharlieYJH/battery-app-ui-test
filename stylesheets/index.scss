@@ -199,7 +199,7 @@ body, html {
 							position: relative;
 							fill: transparent;
 							stroke-dasharray: 519;
-							stroke-width: 4px;
+							stroke-width: 3px;
 						}
 
 						// Progress circle background
@@ -271,14 +271,6 @@ body, html {
 		height: 14%;
 		text-align: center;
 
-		// Pseudo element hack to vertical align contained elements
-		&:before {
-			content: "";
-			display: inline-block;
-			vertical-align: middle;
-			height: 100%;
-		}
-
 		// Button containers
 		.button-container {
 			display: inline-block;
@@ -308,8 +300,8 @@ body, html {
 			margin: 0 auto;
 
 			& > div {
-				width: 90%;
-				height: 90%;
+				width: 100%;
+				height: 100%;
 				margin: 0 auto;
 				border-radius: 50%;
 				background: $iconColor;
