@@ -8,20 +8,15 @@ html
 	body
 		div.main-wrapper
 
-			div.title-wrapper
-				div.title Battery App.
-				div.description.
-					<br/>Introducing the world's greatest battery app<br/>
-					in existence.<br/><br/>
-					Brought to you by Company.
-
-			div.input-wrapper
-				div.input-name Charge
-				input(type="range", min="0", max="100")
-				div.input-name Health
-				input(type="range", min="0", max="100")
-
 			div.content-wrapper
+
+				div.title-wrapper
+					div.title Battery App.
+					div.description.
+						<br/>Introducing the world's greatest battery app<br/>
+						in existence.<br/><br/>
+						Brought to you by Company.
+
 				div.interface-wrapper
 					div.app-panel
 
@@ -70,5 +65,11 @@ html
 								div.button-text cloud
 								div.button-icon
 									div
+
+				div.input-wrapper
+					div.input-name Charge
+					input(type="range", min="0", max="100")
+					div.input-name Health
+					input(type="range", min="0", max="100")
 
 	script(src="../javascript/index.js")
