@@ -277,89 +277,60 @@
 		[33, 150, 9]
 	];
 
-	// Charge and health progress objects
-	var charge = (new Progress(new Color(), range)).init();
-	var health = (new Progress(new Color(), range)).init();
-
-	// Charge and health SVG progress bars
-	var charge_bar = document.getElementById("battery-charge");
-	var charge_bg = document.getElementById("charge-bg");
-	var charge_dot = document.getElementById("charge-dot");
-
-	var health_bar = document.getElementById("battery-health");
-	var health_bg = document.getElementById("health-bg");
-	var health_dot = document.getElementById("health-dot");
-
-	// Charge and health radial progress circumference
-	var charge_circumference;
-	var health_circumference;
-
-	// Charge and health progress text
-	var charge_data = document.getElementById("charge-data");
-	var charge_text = charge_data.children[1];
-	var health_data = document.getElementById("health-data");
-	var health_text = health_data.children[1];
-
-	// Helper function for updating health display
-	var updateHealth = function(progress) {
-
-		// Update health information
-		health.setProgress(progress);
-		health_text.innerHTML = health.getProgress();
-		health_bar.style.strokeDashoffset = (1 - health.getProgressPercentage()) * health_circumference;
-
-		// Get new health color
-		var health_color = health.getColorCSS(1);
-		var health_bg_color = health.getColorCSS(0.2);
-
-		// Linear equation to get proper rotation for dot using progress percentage
-		var angle = -360 * (1 - health.getProgressPercentage()) + 270;
-		health_dot.style.transform = "rotate(" + angle + "deg)";
-
-		// Update colors
-		health_bar.style.stroke = health_color;
-		health_bg.style.stroke = health_bg_color;
-		health_data.style.color = health_color;
-		health_dot.style.stroke = health_color;
+	// Charge object containing relevant display data and objects
+	var charge = {
+		progress: (new Progress(new Color(), range)).init(),
+		bar: document.getElementById("battery-charge"),
+		background: document.getElementById("charge-bg"),
+		dot: document.getElementById("charge-dot"),
+		text: document.getElementById("charge-data"),
+		data: document.getElementById("charge-data").children[1],
+		circumference: 0	// Calculate once document loads to prevent wrong circumference
 	};
 
-	// Helper function for updating charge display
-	var updateCharge = function(progress) {
+	// Health object containing relevant display data and objects
+	var health = {
+		progress: (new Progress(new Color(), range)).init(),
+		bar: document.getElementById("battery-health"),
+		background: document.getElementById("health-bg"),
+		dot: document.getElementById("health-dot"),
+		text: document.getElementById("health-data"),
+		data: document.getElementById("health-data").children[1],
+		circumference: 0	// Calculate once document loads to prevent wrong circumference
+	};
 
-		// Update charge information
-		charge.setProgress(progress);
-		charge_text.innerHTML = charge.getProgress();
-		charge_bar.style.strokeDashoffset = (1 - charge.getProgressPercentage()) * charge_circumference;
+	// Helper function for updating display
+	var update = function(element, progress) {
 
-		// Linear equation to get proper rotation for dot using progress percentage
-		var angle = -360 * (1 - charge.getProgressPercentage()) + 270;
-		charge_dot.style.transform = "rotate(" + angle + "deg)";
+		// Update progress information
+		element.progress.setProgress(progress);
+		element.data.innerHTML = element.progress.getProgress();
+		element.bar.style.strokeDashoffset = (1 - element.progress.getProgressPercentage()) * element.circumference;
 
-		// Get new charge color
-		var charge_color = charge.getColorCSS(1);
-		var charge_bg_color = charge.getColorCSS(0.2);
+		// Get new colors
+		var cover_color = element.progress.getColorCSS(1);
+		var bg_color = element.progress.getColorCSS(0.2);
+
+		// Linear equation to get proper rotation for dot to sync with progress bar
+		var angle = -360 * (1 - element.progress.getProgressPercentage()) + 270;
+		element.dot.style.transform = "rotate(" + angle + "deg)";
 
 		// Update colors
-		charge_bar.style.stroke = charge_color;
-		charge_bg.style.stroke = charge_bg_color;
-		charge_data.style.color = charge_color;
-		charge_dot.style.stroke = charge_color;
+		element.bar.style.stroke = cover_color;
+		element.dot.style.stroke = cover_color;
+		element.text.style.color = cover_color;
+		element.background.style.stroke = bg_color;
 	};
 
 	window.addEventListener("load", function() {
 
-		var charge_color = charge.getColorCSS(1);
-		var charge_bg_color = charge.getColorCSS(0.2);
-		var health_color = health.getColorCSS(1);
-		var health_bg_color = health.getColorCSS(0.2);
-
 		// Calculate circumference after loading to prevent 0 error
-		charge_circumference = Math.round(2 * Math.PI * charge_bar.r.baseVal.value);
-		health_circumference = Math.round(2 * Math.PI * health_bar.r.baseVal.value);
+		charge.circumference = Math.round(2 * Math.PI * charge.bar.r.baseVal.value);
+		health.circumference = Math.round(2 * Math.PI * health.bar.r.baseVal.value);
 
 		// Initialize health and charge
-		updateHealth(Math.floor(Math.random() * 100));
-		updateCharge(Math.floor(Math.random() * 100));
+		update(health, Math.floor(Math.random() * 100));
+		update(charge, Math.floor(Math.random() * 100));
 	});
 
 	// Using interval testing for now
@@ -374,8 +345,8 @@
 		// if (new_health < 0) new_health = 100;
 
 		// Update health and charge
-		updateCharge(new_charge);
-		updateHealth(new_health);
+		update(charge, new_charge);
+		update(health, new_health);
 
 	}, 1000)
 })();
