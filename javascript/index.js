@@ -99,8 +99,12 @@
 
 		// Check inputs for errors
 		if (color.constructor !== Color) throw new Error("Expected a Color object");
+
 		if (range.length < 1) throw new Error("The range must have at least 1 RGB element");
-		if ((start !== null && end !== null) && (start >= end)) throw new Error("Start must be less than end");
+
+		if ((start !== undefined && end === undefined) || (start === undefined && end !== undefined)) throw new Error("One of the end point values are missing");
+
+		if ((start !== undefined && end !== undefined) && (start >= end)) throw new Error("Start must be less than end");
 
 		// Color object and color ranges
 		var m_color = color;
@@ -109,7 +113,12 @@
 		// Progress end points and initializes the current progress
 		var m_start = start || 0;
 		var m_end = end || 100;
-		var m_progress = m_start;
+
+		// Progress tracker
+		var m_progress;
+
+		// Breakpoints array which will break the range into |m_range.length - 1| segments
+		var m_breakpoints;
 
 		/*
 		 * getBreakpoints()
@@ -141,9 +150,6 @@
 			return breakpoints;
 		};
 
-		// Breakpoints array which will break the range into |m_range.length - 1| segments
-		var m_breakpoints = getBreakpoints();
-
 		/*
 		 * getCurrentRange()
 		 * Helper function to determine the current progress range we're in
@@ -166,6 +172,57 @@
 		};
 
 		/*
+		 * transitionRGB()
+		 * Transitions the current RGB to the new RGB value based on current progress
+		 * @param [progress]: Current progress
+		 * @param [range]: An array with the indices of the range we are currently in
+		 */
+		var transitionRGB = function(progress, range) {
+
+			// Get the start and end of the range
+			var start = m_breakpoints[range[0]];
+			var end = m_breakpoints[range[1]];
+
+			// Get the percentage of progress relative to this range
+			var percentage = (progress - start) / (end - start);
+
+			// Get the corresponding start and end colors for this range
+			var start_color = m_range[range[0]];
+			var end_color = (m_range.length > 1) ? m_range[range[1]] : start_color;
+
+			var new_rgb = [];
+
+			// For each RGB value, calculate the new value based on the progress percentage in the current range
+			for (var i = 0; i < start_color.length; i++) {
+
+				var step = percentage * (end_color[i] - start_color[i]);
+				var new_color = Math.round(start_color[i] + step);
+
+				new_rgb.push(new_color);
+			}
+
+			m_color.setRGB(new_rgb);
+		};
+
+		/*
+		 * init()
+		 * Initializes various internal variables
+		 */
+		this.init = function() {
+
+			// Initializes the breakpoints based on range
+			m_breakpoints = getBreakpoints();
+
+			// Initializes the color to the first color in the range
+			m_color.setRGB(m_range[0]);
+
+			// Initializes the progress to the start value
+			m_progress = m_start;
+
+			return this;
+		};
+
+		/*
 		 * setProgress()
 		 * Sets the current stored progress and adjusts the RGB value accordingly
 		 * @param [progress]: The progress to be assigned
@@ -180,11 +237,36 @@
 
 			var range = getCurrentRange();
 
-			console.log(m_breakpoints);
-			console.log(m_breakpoints[range[0]], m_breakpoints[range[1]]);
+			transitionRGB(m_progress, range);
+
+			// console.log(m_breakpoints);
+			// console.log(m_breakpoints[range[0]], m_breakpoints[range[1]]);
+			// console.log(m_range[range[0]], m_range[range[1]]);
 		};
+
+		/*
+		 * getProgressPercentage()
+		 * Gets the progress in percentage with respect to the total range
+		 * @return: A progress in percentage
+		 */
+		this.getProgressPercentage = function() {
+			return (m_progress - m_start) / (m_end - m_start);
+		};
+
+		/*
+		 * getColorCSS()
+		 * Converts the current color to an RGB CSS string
+		 * @return: A CSS RGB string
+		 */
+		this.getColorCSS = function() {
+			return m_color.toCSS();
+		}
 	};
 
-	(new Progress(new Color(), [2, 4, 5, 6], 70.001, 70.1)).setProgress(70.001);
-
+	// var range = [
+	// 	[255, 255, 255],
+	// 	[255, 0, 255],
+	// 	[0, 0, 0],
+	// 	[240, 240, 12]
+	// ];
 })();

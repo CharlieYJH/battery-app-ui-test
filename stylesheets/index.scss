@@ -198,8 +198,9 @@ body, html {
 						& > circle {
 							position: relative;
 							fill: transparent;
-							stroke-dasharray: 519;
+							stroke-dasharray: 504;
 							stroke-width: 3px;
+							transition: 0.2s ease-out;
 						}
 
 						// Progress circle background
@@ -215,7 +216,7 @@ body, html {
 
 						// Battery health indicator
 						#battery-charge {
-							stroke-dashoffset: 100;
+							stroke-dashoffset: 504;
 							@include rotate(270deg, 50%, 54%);
 						}
 

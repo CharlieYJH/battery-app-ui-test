@@ -128,15 +128,16 @@ body, html {
             .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar > circle {
               position: relative;
               fill: transparent;
-              stroke-dasharray: 519;
-              stroke-width: 3px; }
+              stroke-dasharray: 504;
+              stroke-width: 3px;
+              transition: 0.2s ease-out; }
             .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar .progress-background {
               stroke: rgba(0, 0, 0, 0.2); }
             .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar .progress-cover {
               stroke: black;
               stroke-linecap: round; }
             .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar #battery-charge {
-              stroke-dashoffset: 100;
+              stroke-dashoffset: 504;
               transform: rotate(270deg);
               transform-origin: 50% 54%; }
             .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar #battery-health {
