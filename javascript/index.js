@@ -284,8 +284,11 @@
 	// Charge and health SVG progress bars
 	var charge_bar = document.getElementById("battery-charge");
 	var charge_bg = document.getElementById("charge-bg");
+	var charge_dot = document.getElementById("charge-dot");
+
 	var health_bar = document.getElementById("battery-health");
 	var health_bg = document.getElementById("health-bg");
+	var health_dot = document.getElementById("health-dot");
 
 	// Charge and health radial progress circumference
 	var charge_circumference;
@@ -309,10 +312,15 @@
 		var health_color = health.getColorCSS(1);
 		var health_bg_color = health.getColorCSS(0.2);
 
+		// Linear equation to get proper rotation for dot using progress percentage
+		var angle = -360 * (1 - health.getProgressPercentage()) + 270;
+		health_dot.style.transform = "rotate(" + angle + "deg)";
+
 		// Update colors
 		health_bar.style.stroke = health_color;
 		health_bg.style.stroke = health_bg_color;
 		health_data.style.color = health_color;
+		health_dot.style.stroke = health_color;
 	};
 
 	// Helper function for updating charge display
@@ -323,6 +331,10 @@
 		charge_text.innerHTML = charge.getProgress();
 		charge_bar.style.strokeDashoffset = (1 - charge.getProgressPercentage()) * charge_circumference;
 
+		// Linear equation to get proper rotation for dot using progress percentage
+		var angle = -360 * (1 - charge.getProgressPercentage()) + 270;
+		charge_dot.style.transform = "rotate(" + angle + "deg)";
+
 		// Get new charge color
 		var charge_color = charge.getColorCSS(1);
 		var charge_bg_color = charge.getColorCSS(0.2);
@@ -331,6 +343,7 @@
 		charge_bar.style.stroke = charge_color;
 		charge_bg.style.stroke = charge_bg_color;
 		charge_data.style.color = charge_color;
+		charge_dot.style.stroke = charge_color;
 	};
 
 	window.addEventListener("load", function() {
@@ -353,16 +366,16 @@
 	setInterval(function() {
 
 		// Increment new charge and health progress
-		var new_charge = charge.getProgress() - 1;
-		var new_health = health.getProgress() - 1;
+		var new_charge = Math.floor(Math.random() * 100);
+		var new_health = Math.floor(Math.random() * 100);
 
-		// Reset if past max
-		if (new_charge < 0) new_charge = 100;
-		if (new_health < 0) new_health = 100;
+		// // Reset if past max
+		// if (new_charge < 0) new_charge = 100;
+		// if (new_health < 0) new_health = 100;
 
 		// Update health and charge
 		updateCharge(new_charge);
 		updateHealth(new_health);
 
-	}, 150)
+	}, 1000)
 })();

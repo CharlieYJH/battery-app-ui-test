@@ -36,6 +36,7 @@ html
 										svg.progress-bar
 											circle(r="34%" cx="50%" cy="54%")#charge-bg
 											circle(r="34%" cx="50%" cy="54%").progress-cover#battery-charge
+											circle(r="34%" cx="50%" cy="54%").cover-dot#charge-dot
 									div.data-display
 										div.data-text#health-data
 											div.data-label health
@@ -43,6 +44,7 @@ html
 										svg.progress-bar#battery-charge
 											circle(r="34%" cx="50%" cy="46%")#health-bg
 											circle(r="34%" cx="50%" cy="46%").progress-cover#battery-health
+											circle(r="34%" cx="50%" cy="46%").cover-dot#health-dot
 								div.nav-arrow
 							ul.content-slider
 								li.slider-dot.active
@@ -67,9 +69,9 @@ html
 									div
 
 				div.input-wrapper
-					div.input-name Charge
-					input(type="range", min="0", max="100")
-					div.input-name Health
-					input(type="range", min="0", max="100")
+					div.input-name charge
+					input(type="range", min="0", max="100")#charge-input
+					div.input-name health
+					input(type="range", min="0", max="100")#health-input
 
 	script(src="../javascript/index.js")

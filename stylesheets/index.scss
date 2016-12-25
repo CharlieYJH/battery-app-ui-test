@@ -120,13 +120,25 @@ body, html {
 	position: relative;
 	margin-left: 5%;
 	vertical-align: middle;
+	text-align: left;
 	font-family: $fontStack;
+	font-weight: 300;
+	font-size: 18px;
+	letter-spacing: 2px;
 
 	@media only screen and (max-width: $mobile) {
 		position: fixed;
 		width: 100%;
 		bottom: 0;
 		left: 0;
+		margin: 0;
+		padding: 4% 0 4% 0;
+		background: rgba(0, 0, 0, 0.8);
+		text-align: center;
+		color: white;
+	}
+
+	input {
 		margin: 0;
 	}
 }
@@ -249,10 +261,27 @@ body, html {
 							stroke-linecap: round;
 						}
 
+						.cover-dot {
+							stroke: black;
+							stroke-width: 10px;
+							stroke-linecap: round;
+							stroke-dashoffset: 504;
+							transition: transform 0.2s ease-out, stroke 0.2s ease-out;
+							@include rotate(270deg, 50%, 54%);
+						}
+
 						// Battery health indicator
 						#battery-charge {
 							stroke-dashoffset: 504;
 							@include rotate(270deg, 50%, 54%);
+						}
+
+						#charge-dot {
+							@include rotate(270deg, 50%, 54%);
+						}
+
+						#health-dot {
+							@include rotate(270deg, 50%, 46%);
 						}
 
 						// Battery charge indicator
