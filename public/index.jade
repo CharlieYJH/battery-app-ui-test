@@ -15,6 +15,12 @@ html
 					in existence.<br/><br/>
 					Brought to you by Company.
 
+			div.input-wrapper
+				div.input-name Charge
+				input(type="range", min="0", max="100")
+				div.input-name Health
+				input(type="range", min="0", max="100")
+
 			div.content-wrapper
 				div.interface-wrapper
 					div.app-panel
@@ -31,16 +37,16 @@ html
 									div.data-display
 										div.data-text#charge-data
 											div.data-label charge
-											div.data-number 100
+											div.data-number 0
 										svg.progress-bar
-											circle(r="34%" cx="50%" cy="54%").progress-background
+											circle(r="34%" cx="50%" cy="54%")#charge-bg
 											circle(r="34%" cx="50%" cy="54%").progress-cover#battery-charge
 									div.data-display
 										div.data-text#health-data
 											div.data-label health
-											div.data-number 68
+											div.data-number 0
 										svg.progress-bar#battery-charge
-											circle(r="34%" cx="50%" cy="46%").progress-background
+											circle(r="34%" cx="50%" cy="46%")#health-bg
 											circle(r="34%" cx="50%" cy="46%").progress-cover#battery-health
 								div.nav-arrow
 							ul.content-slider

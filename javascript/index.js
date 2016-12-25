@@ -80,15 +80,15 @@
 		/*
 		 * toCSS()
 		 * Returns the CSS string of the stored RGB values
-		 * @return: The CSS string of the RGB values in the format 'rgb(r,g,b)'
+		 * @return: The CSS string of the RGB values in the format 'rgba(r,g,b,opacity)'
 		 */
-		this.toCSS = function() {
-			return "rgb(" + m_rgb.r + "," + m_rgb.g + "," + m_rgb.b + ")";
+		this.toCSS = function(opacity) {
+			return "rgba(" + m_rgb.r + "," + m_rgb.g + "," + m_rgb.b + "," + opacity + ")";
 		};
 	};
 
 	/*
-	 * Progress Bar Class
+	 * Progress Class
 	 * Creates progress bar objects which has color and progress information
 	 * @param [color]: A color object
 	 * @param [range]: A range of RGB values that define the progress bar color at different points
@@ -235,13 +235,20 @@
 			// Sets the current progress
 			m_progress = progress;
 
+			// Get current range
 			var range = getCurrentRange();
 
+			// Transition the RGB colors
 			transitionRGB(m_progress, range);
+		};
 
-			// console.log(m_breakpoints);
-			// console.log(m_breakpoints[range[0]], m_breakpoints[range[1]]);
-			// console.log(m_range[range[0]], m_range[range[1]]);
+		/*
+		 * getProgress()
+		 * Gets the actual progress number
+		 * @return: The actual progress amount
+		 */
+		this.getProgress = function() {
+			return m_progress;
 		};
 
 		/*
@@ -258,15 +265,104 @@
 		 * Converts the current color to an RGB CSS string
 		 * @return: A CSS RGB string
 		 */
-		this.getColorCSS = function() {
-			return m_color.toCSS();
-		}
+		this.getColorCSS = function(opacity) {
+			return m_color.toCSS(opacity);
+		};
 	};
 
-	// var range = [
-	// 	[255, 255, 255],
-	// 	[255, 0, 255],
-	// 	[0, 0, 0],
-	// 	[240, 240, 12]
-	// ];
+	// Color Ranges
+	var range = [
+		[245, 12, 13],
+		[243, 166, 0],
+		[33, 150, 9]
+	];
+
+	// Charge and health progress objects
+	var charge = (new Progress(new Color(), range)).init();
+	var health = (new Progress(new Color(), range)).init();
+
+	// Charge and health SVG progress bars
+	var charge_bar = document.getElementById("battery-charge");
+	var charge_bg = document.getElementById("charge-bg");
+	var health_bar = document.getElementById("battery-health");
+	var health_bg = document.getElementById("health-bg");
+
+	// Charge and health radial progress circumference
+	var charge_circumference;
+	var health_circumference;
+
+	// Charge and health progress text
+	var charge_data = document.getElementById("charge-data");
+	var charge_text = charge_data.children[1];
+	var health_data = document.getElementById("health-data");
+	var health_text = health_data.children[1];
+
+	// Helper function for updating health display
+	var updateHealth = function(progress) {
+
+		// Update health information
+		health.setProgress(progress);
+		health_text.innerHTML = health.getProgress();
+		health_bar.style.strokeDashoffset = (1 - health.getProgressPercentage()) * health_circumference;
+
+		// Get new health color
+		var health_color = health.getColorCSS(1);
+		var health_bg_color = health.getColorCSS(0.2);
+
+		// Update colors
+		health_bar.style.stroke = health_color;
+		health_bg.style.stroke = health_bg_color;
+		health_data.style.color = health_color;
+	};
+
+	// Helper function for updating charge display
+	var updateCharge = function(progress) {
+
+		// Update charge information
+		charge.setProgress(progress);
+		charge_text.innerHTML = charge.getProgress();
+		charge_bar.style.strokeDashoffset = (1 - charge.getProgressPercentage()) * charge_circumference;
+
+		// Get new charge color
+		var charge_color = charge.getColorCSS(1);
+		var charge_bg_color = charge.getColorCSS(0.2);
+
+		// Update colors
+		charge_bar.style.stroke = charge_color;
+		charge_bg.style.stroke = charge_bg_color;
+		charge_data.style.color = charge_color;
+	};
+
+	window.addEventListener("load", function() {
+
+		var charge_color = charge.getColorCSS(1);
+		var charge_bg_color = charge.getColorCSS(0.2);
+		var health_color = health.getColorCSS(1);
+		var health_bg_color = health.getColorCSS(0.2);
+
+		// Calculate circumference after loading to prevent 0 error
+		charge_circumference = Math.round(2 * Math.PI * charge_bar.r.baseVal.value);
+		health_circumference = Math.round(2 * Math.PI * health_bar.r.baseVal.value);
+
+		// Initialize health and charge
+		updateHealth(Math.floor(Math.random() * 100));
+		updateCharge(Math.floor(Math.random() * 100));
+	});
+
+	// Using interval testing for now
+	setInterval(function() {
+
+		// Increment new charge and health progress
+		var new_charge = charge.getProgress() - 1;
+		var new_health = health.getProgress() - 1;
+
+		// Reset if past max
+		if (new_charge < 0) new_charge = 100;
+		if (new_health < 0) new_health = 100;
+
+		// Update health and charge
+		updateCharge(new_charge);
+		updateHealth(new_health);
+
+	}, 150)
 })();

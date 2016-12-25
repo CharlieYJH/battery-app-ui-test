@@ -15,6 +15,12 @@
           
         </div>
       </div>
+      <div class="input-wrapper">
+        <div class="input-name">Charge</div>
+        <input type="range" min="0" max="100">
+        <div class="input-name">Health</div>
+        <input type="range" min="0" max="100">
+      </div>
       <div class="content-wrapper">
         <div class="interface-wrapper">
           <div class="app-panel">
@@ -29,20 +35,20 @@
                   <div class="data-display">
                     <div id="charge-data" class="data-text">
                       <div class="data-label">charge</div>
-                      <div class="data-number">100</div>
+                      <div class="data-number">0</div>
                     </div>
                     <svg class="progress-bar">
-                      <circle r="34%" cx="50%" cy="54%" class="progress-background"></circle>
+                      <circle r="34%" cx="50%" cy="54%" id="charge-bg"></circle>
                       <circle r="34%" cx="50%" cy="54%" id="battery-charge" class="progress-cover"></circle>
                     </svg>
                   </div>
                   <div class="data-display">
                     <div id="health-data" class="data-text">
                       <div class="data-label">health</div>
-                      <div class="data-number">68</div>
+                      <div class="data-number">0</div>
                     </div>
                     <svg id="battery-charge" class="progress-bar">
-                      <circle r="34%" cx="50%" cy="46%" class="progress-background"></circle>
+                      <circle r="34%" cx="50%" cy="46%" id="health-bg"></circle>
                       <circle r="34%" cx="50%" cy="46%" id="battery-health" class="progress-cover"></circle>
                     </svg>
                   </div>
