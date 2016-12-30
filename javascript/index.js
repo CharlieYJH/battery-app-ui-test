@@ -2,6 +2,8 @@
 
 (function(){
 
+	/* -------------------------- Class Definitions -------------------------- */
+
 	/*
 	 * Color Class
 	 * Stores the RGB values for this color and provides useful methods for accessing and setting colors
@@ -270,83 +272,130 @@
 		};
 	};
 
-	// Color Ranges
-	var range = [
-		[245, 12, 13],
-		[243, 166, 0],
-		[33, 150, 9]
-	];
-
-	// Charge object containing relevant display data and objects
-	var charge = {
-		progress: (new Progress(new Color(), range)).init(),
-		bar: document.getElementById("battery-charge"),
-		background: document.getElementById("charge-bg"),
-		dot: document.getElementById("charge-dot"),
-		text: document.getElementById("charge-data"),
-		data: document.getElementById("charge-data").children[1],
-		circumference: 0	// Calculate once document loads to prevent wrong circumference
-	};
-
-	// Health object containing relevant display data and objects
-	var health = {
-		progress: (new Progress(new Color(), range)).init(),
-		bar: document.getElementById("battery-health"),
-		background: document.getElementById("health-bg"),
-		dot: document.getElementById("health-dot"),
-		text: document.getElementById("health-data"),
-		data: document.getElementById("health-data").children[1],
-		circumference: 0	// Calculate once document loads to prevent wrong circumference
-	};
-
-	// Helper function for updating display
-	var update = function(element, progress) {
-
-		// Update progress information
-		element.progress.setProgress(progress);
-		element.data.innerHTML = element.progress.getProgress();
-		element.bar.style.strokeDashoffset = (1 - element.progress.getProgressPercentage()) * element.circumference;
-
-		// Get new colors
-		var cover_color = element.progress.getColorCSS(1);
-		var bg_color = element.progress.getColorCSS(0.2);
-
-		// Linear equation to get proper rotation for dot to sync with progress bar
-		var angle = -360 * (1 - element.progress.getProgressPercentage()) + 270;
-		element.dot.style.transform = "rotate(" + angle + "deg)";
-
-		// Update colors
-		element.bar.style.stroke = cover_color;
-		element.dot.style.stroke = cover_color;
-		element.text.style.color = cover_color;
-		element.background.style.stroke = bg_color;
-	};
+	/* -------------------------- Main Code -------------------------- */
 
 	window.addEventListener("load", function() {
+
+		// Color Ranges
+		var range = [
+			[245, 12, 13],
+			[243, 166, 0],
+			[33, 150, 9]
+		];
+
+		// Charge object containing relevant display data and objects
+		var charge = {
+			progress: (new Progress(new Color(), range)).init(),
+			bar: document.getElementById("battery-charge"),
+			background: document.getElementById("charge-bg"),
+			dot: document.getElementById("charge-dot"),
+			text: document.getElementById("charge-data"),
+			data: document.getElementById("charge-data").children[1],
+			input: document.getElementById("charge-input"),
+			circumference: 0	// Calculate once document loads to prevent wrong circumference
+		};
+
+		// Health object containing relevant display data and objects
+		var health = {
+			progress: (new Progress(new Color(), range)).init(),
+			bar: document.getElementById("battery-health"),
+			background: document.getElementById("health-bg"),
+			dot: document.getElementById("health-dot"),
+			text: document.getElementById("health-data"),
+			data: document.getElementById("health-data").children[1],
+			input: document.getElementById("health-input"),
+			circumference: 0	// Calculate once document loads to prevent wrong circumference
+		};
+
+		// Randomizer checkbox
+		var randomizer = document.getElementById("randomize");
+
+		// Helper function for updating display
+		var update = function(element, progress) {
+
+			// Update progress information
+			element.progress.setProgress(progress);
+			element.data.innerHTML = element.progress.getProgress();
+			element.bar.style.strokeDashoffset = (1 - element.progress.getProgressPercentage()) * element.circumference;
+
+			// Get new colors
+			var cover_color = element.progress.getColorCSS(1);
+			var bg_color = element.progress.getColorCSS(0.2);
+
+			// Linear equation to get proper rotation for dot to sync with progress bar
+			var angle = -360 * (1 - element.progress.getProgressPercentage()) + 630;
+			element.dot.style.transform = "rotate(" + angle + "deg)";
+
+			// Update colors
+			element.bar.style.stroke = cover_color;
+			element.dot.style.stroke = cover_color;
+			element.text.style.color = cover_color;
+			element.background.style.stroke = bg_color;
+		};
 
 		// Calculate circumference after loading to prevent 0 error
 		charge.circumference = Math.round(2 * Math.PI * charge.bar.r.baseVal.value);
 		health.circumference = Math.round(2 * Math.PI * health.bar.r.baseVal.value);
 
 		// Initialize health and charge
-		update(health, Math.floor(Math.random() * 100));
-		update(charge, Math.floor(Math.random() * 100));
+		update(health, 0);
+		update(charge, 0);
+
+		// Initialize slider input values
+		charge.input.value = 0;
+		health.input.value = 0;
+
+		// Set it to initially randomize charge and health values
+		randomizer.checked = true;
+
+		// Randomizes progress readings every 1 second
+		setInterval(function() {
+
+			// If randomize isn't checked, return
+			if (!randomizer.checked) return;
+
+			// Increment new charge and health progress
+			var new_charge = Math.floor(Math.random() * 100);
+			var new_health = Math.floor(Math.random() * 100);
+
+			// Update health and charge
+			update(charge, new_charge);
+			update(health, new_health);
+
+			// Update slider positions
+			charge.input.value = new_charge;
+			health.input.value = new_health;
+
+		}, 1000);
+
+		// Updates charge progress using slider
+		charge.input.addEventListener("input", function() {
+			if (!randomizer.checked) update(charge, charge.input.value);
+		});
+
+		// Updates health progress using slider
+		health.input.addEventListener("input", function() {
+			if (!randomizer.checked) update(health, health.input.value);
+		});
+
+		// Reads randomize checkbox
+		randomizer.addEventListener("change", function() {
+
+			var class_name = "randomize";
+
+			// Add or remove classes depending on randomizer checkbox to add or remove CSS transitions
+			// This prevents jittery animation when the bars are manually controlled
+			if (randomizer.checked) {
+				charge.bar.classList.add(class_name);
+				charge.dot.classList.add(class_name);
+				health.bar.classList.add(class_name);
+				health.dot.classList.add(class_name);
+			} else {
+				charge.bar.classList.remove(class_name);
+				charge.dot.classList.remove(class_name);
+				health.bar.classList.remove(class_name);
+				health.dot.classList.remove(class_name);
+			}
+		});
 	});
-
-	// Using interval testing for now
-	setInterval(function() {
-
-		// Increment new charge and health progress
-		var new_charge = Math.floor(Math.random() * 100);
-		var new_health = Math.floor(Math.random() * 100);
-
-		// // Reset if past max
-		// if (new_charge < 0) new_charge = 100;
-		// if (new_health < 0) new_health = 100;
-
-		// Update health and charge
-		update(charge, new_charge);
-		update(health, new_health);
-
-	}, 1000)
 })();

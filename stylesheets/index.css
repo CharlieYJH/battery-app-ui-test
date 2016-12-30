@@ -87,6 +87,13 @@ body, html {
       color: white; } }
   .input-wrapper input {
     margin: 0; }
+  .input-wrapper label {
+    display: block;
+    margin-top: 15px; }
+    .input-wrapper label #randomize {
+      vertical-align: middle; }
+    .input-wrapper label span {
+      vertical-align: middle; }
 
 .app-panel {
   position: absolute;
@@ -164,30 +171,31 @@ body, html {
               position: relative;
               fill: transparent;
               stroke-dasharray: 504;
-              stroke-width: 3px;
-              transition: stroke 0.2s ease-out, stroke-dashoffset 0.2s ease-out; }
+              stroke-width: 3px; }
             .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar .progress-cover {
               stroke-linecap: round; }
+              .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar .progress-cover.randomize {
+                transition: stroke 0.2s ease-out, stroke-dashoffset 0.2s ease-out; }
             .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar .cover-dot {
-              stroke: black;
               stroke-width: 10px;
               stroke-linecap: round;
               stroke-dashoffset: 504;
-              transition: transform 0.2s ease-out, stroke 0.2s ease-out;
               transform: rotate(270deg);
               transform-origin: 50% 54%; }
+              .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar .cover-dot.randomize {
+                transition: transform 0.2s ease-out, stroke 0.2s ease-out; }
             .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar #battery-charge {
               stroke-dashoffset: 504;
               transform: rotate(270deg);
               transform-origin: 50% 54%; }
+            .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar #battery-health {
+              stroke-dashoffset: 504;
+              transform: rotate(270deg);
+              transform-origin: 50% 46%; }
             .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar #charge-dot {
               transform: rotate(270deg);
               transform-origin: 50% 54%; }
             .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar #health-dot {
-              transform: rotate(270deg);
-              transform-origin: 50% 46%; }
-            .app-panel .app-content-container .app-content .data-display-container .data-display .progress-bar #battery-health {
-              stroke-dashoffset: 504;
               transform: rotate(270deg);
               transform-origin: 50% 46%; }
       .app-panel .app-content-container .app-content .nav-arrow {

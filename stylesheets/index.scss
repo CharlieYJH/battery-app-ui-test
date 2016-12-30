@@ -141,6 +141,20 @@ body, html {
 	input {
 		margin: 0;
 	}
+
+	// Randomizer checkbox input
+	label {
+		display: block;
+		margin-top: 15px;
+
+		#randomize {
+			vertical-align: middle;
+		}
+
+		span {
+			vertical-align: middle;
+		}
+	}
 }
 
 // App panel (main interface)
@@ -253,21 +267,29 @@ body, html {
 							fill: transparent;
 							stroke-dasharray: 504;
 							stroke-width: 3px;
-							transition: stroke 0.2s ease-out, stroke-dashoffset 0.2s ease-out;
 						}
 
 						// Radial progress bar
 						.progress-cover {
 							stroke-linecap: round;
+
+							// Make transitions smooth when randomize is checked
+							&.randomize {
+								transition: stroke 0.2s ease-out, stroke-dashoffset 0.2s ease-out;
+							}
 						}
 
+						// Progress bar dot
 						.cover-dot {
-							stroke: black;
 							stroke-width: 10px;
 							stroke-linecap: round;
 							stroke-dashoffset: 504;
-							transition: transform 0.2s ease-out, stroke 0.2s ease-out;
 							@include rotate(270deg, 50%, 54%);
+
+							// Make transitions smooth when randomize is checked
+							&.randomize {
+								transition: transform 0.2s ease-out, stroke 0.2s ease-out;
+							}
 						}
 
 						// Battery health indicator
@@ -276,17 +298,19 @@ body, html {
 							@include rotate(270deg, 50%, 54%);
 						}
 
+						// Battery charge indicator
+						#battery-health {
+							stroke-dashoffset: 504;
+							@include rotate(270deg, 50%, 46%);
+						}
+
+						// Charge specific position adjustment
 						#charge-dot {
 							@include rotate(270deg, 50%, 54%);
 						}
 
+						// Health specific position adjustment
 						#health-dot {
-							@include rotate(270deg, 50%, 46%);
-						}
-
-						// Battery charge indicator
-						#battery-health {
-							stroke-dashoffset: 504;
 							@include rotate(270deg, 50%, 46%);
 						}
 					}
