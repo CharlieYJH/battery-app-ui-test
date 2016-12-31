@@ -142,18 +142,8 @@ body, html {
 		margin: 0;
 	}
 
-	// Randomizer checkbox input
-	label {
-		display: block;
+	.checkbox-container {
 		margin-top: 15px;
-
-		#randomize {
-			vertical-align: middle;
-		}
-
-		span {
-			vertical-align: middle;
-		}
 	}
 }
 

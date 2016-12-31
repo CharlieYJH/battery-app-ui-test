@@ -87,13 +87,8 @@ body, html {
       color: white; } }
   .input-wrapper input {
     margin: 0; }
-  .input-wrapper label {
-    display: block;
+  .input-wrapper .checkbox-container {
     margin-top: 15px; }
-    .input-wrapper label #randomize {
-      vertical-align: middle; }
-    .input-wrapper label span {
-      vertical-align: middle; }
 
 .app-panel {
   position: absolute;
