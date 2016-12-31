@@ -145,6 +145,57 @@ body, html {
 	.checkbox-container {
 		margin-top: 15px;
 	}
+
+	// Disable default checkbox
+	#randomize {
+		display: none;
+	}
+
+	// Compensates for checkbox width and position
+	#randomize + label {
+		position: relative;
+		margin-left: 52px;
+	}
+
+	#randomize + label span {
+		cursor: pointer;
+	}
+
+	#randomize + label span:before,
+	#randomize + label span:after {
+		content: '';
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		margin: auto;
+	}
+
+	#randomize + label span:before {
+		left: -52px;
+		width: 45px;
+		height: 25px;
+		background: #e50909;
+		border-radius: 50px;
+		transition: background 0.2s ease-out;
+	}
+
+	#randomize + label span:after {
+		left: -50px;
+		width: 21px;
+		height: 21px;
+		background: white;
+		border-radius: 100%;
+		box-shadow: 0 0 5px -1px black;
+		transition: left 0.2s ease-out;
+	}
+
+	#randomize:checked + label span:before {
+		background: #25ca19;
+	}
+
+	#randomize:checked + label span:after {
+		left: -30.5px;
+	}
 }
 
 // App panel (main interface)

@@ -89,6 +89,39 @@ body, html {
     margin: 0; }
   .input-wrapper .checkbox-container {
     margin-top: 15px; }
+  .input-wrapper #randomize {
+    display: none; }
+  .input-wrapper #randomize + label {
+    position: relative;
+    margin-left: 52px; }
+  .input-wrapper #randomize + label span {
+    cursor: pointer; }
+  .input-wrapper #randomize + label span:before,
+  .input-wrapper #randomize + label span:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto; }
+  .input-wrapper #randomize + label span:before {
+    left: -52px;
+    width: 45px;
+    height: 25px;
+    background: #e50909;
+    border-radius: 50px;
+    transition: background 0.2s ease-out; }
+  .input-wrapper #randomize + label span:after {
+    left: -50px;
+    width: 21px;
+    height: 21px;
+    background: white;
+    border-radius: 100%;
+    box-shadow: 0 0 5px -1px black;
+    transition: left 0.2s ease-out; }
+  .input-wrapper #randomize:checked + label span:before {
+    background: #25ca19; }
+  .input-wrapper #randomize:checked + label span:after {
+    left: -30.5px; }
 
 .app-panel {
   position: absolute;
